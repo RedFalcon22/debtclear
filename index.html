@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DebtClear Solutions — Professional Debt Collection Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1C2E;
+    --navy-mid: #122540;
+    --gold: #C9A84C;
+    --gold-light: #E2C97E;
+    --cream: #F5F0E8;
+    --cream-dark: #EDE6D6;
+    --slate: #4A5568;
+    --white: #FFFFFF;
+    --accent-red: #8B1A1A;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6%;
+    background: rgba(11,28,46,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    animation: fadeDown 0.8s ease forwards;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+  }
+
+  .logo span { color: var(--cream); }
+
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a {
+    color: var(--cream); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  nav ul a:hover { opacity: 1; color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-weight: 600 !important; opacity: 1 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 6% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 80% at 10% 80%, rgba(139,26,26,0.08) 0%, transparent 60%),
+      linear-gradient(160deg, #0B1C2E 0%, #0d2137 60%, #0B1C2E 100%);
+  }
+
+  .hero-grid-lines {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image:
+      linear-gradient(var(--gold) 1px, transparent 1px),
+      linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .hero-content { position: relative; z-index: 2; max-width: 680px; }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.8rem;
+    opacity: 0; animation: fadeUp 0.7s 0.3s ease forwards;
+  }
+
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 1px; background: var(--gold);
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+    font-weight: 900; line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.5s ease forwards;
+  }
+
+  h1 em {
+    font-style: normal; color: var(--gold);
+    position: relative;
+  }
+
+  h1 em::after {
+    content: '';
+    position: absolute; bottom: 4px; left: 0; right: 0;
+    height: 3px; background: var(--gold); opacity: 0.4;
+    border-radius: 2px;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.75;
+    color: rgba(245,240,232,0.7);
+    max-width: 520px; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.65s ease forwards;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0; animation: fadeUp 0.7s 0.8s ease forwards;
+  }
+
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    font-weight: 700; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    background: transparent; color: var(--cream);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    font-weight: 600; font-size: 0.9rem; letter-spacing: 0.06em;
+    text-transform: uppercase; text-decoration: none;
+    border: 1px solid rgba(245,240,232,0.3); cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  .hero-stats {
+    position: absolute; right: 6%; bottom: 12%;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    opacity: 0; animation: fadeLeft 0.8s 1s ease forwards;
+  }
+
+  .stat {
+    text-align: right;
+    border-right: 2px solid var(--gold);
+    padding-right: 1.2rem;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: rgba(245,240,232,0.5);
+    margin-top: 0.2rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(24px); }
+    to   { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 6%; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--white); margin-bottom: 1rem;
+  }
+
+  .section-sub {
+    font-size: 1rem; line-height: 1.7;
+    color: rgba(245,240,232,0.6);
+    max-width: 580px;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--navy-mid); }
+
+  .services-header { margin-bottom: 3.5rem; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px;
+    border: 1px solid rgba(201,168,76,0.12);
+  }
+
+  .service-card {
+    background: var(--navy);
+    padding: 2.5rem 2rem;
+    border: 1px solid rgba(201,168,76,0.08);
+    transition: background 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--gold);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover { background: #0f2235; border-color: rgba(201,168,76,0.25); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon {
+    width: 48px; height: 48px;
+    background: rgba(201,168,76,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+  }
+
+  .service-step {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+
+  .service-desc {
+    font-size: 0.9rem; line-height: 1.65;
+    color: rgba(245,240,232,0.55);
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-box {
+    background: var(--navy-mid);
+    border: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem;
+    position: relative;
+  }
+
+  .about-box::after {
+    content: '';
+    position: absolute;
+    bottom: -12px; right: -12px;
+    width: 100%; height: 100%;
+    border: 1px solid rgba(201,168,76,0.2);
+    z-index: -1;
+  }
+
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-style: italic;
+    line-height: 1.6; color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .about-quote-attr {
+    font-size: 0.8rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--gold);
+  }
+
+  .about-features { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  .about-feature {
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+
+  .feature-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0; margin-top: 6px;
+  }
+
+  .feature-text { font-size: 0.92rem; line-height: 1.6; color: rgba(245,240,232,0.7); }
+  .feature-text strong { color: var(--white); }
+
+  /* ── HOW WE WORK ── */
+  #how { background: var(--navy-mid); }
+
+  .how-header { margin-bottom: 4rem; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+
+  .steps::before {
+    content: '';
+    position: absolute; top: 32px; left: 8%; right: 8%;
+    height: 1px; background: rgba(201,168,76,0.2);
+  }
+
+  .step {
+    padding: 0 1.5rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .step-num {
+    width: 64px; height: 64px;
+    background: var(--navy);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700; color: var(--gold);
+    margin: 0 auto 1.5rem;
+    position: relative; z-index: 2;
+    transition: background 0.3s, border-color 0.3s;
+  }
+
+  .step:hover .step-num { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+
+  .step-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .step-desc {
+    font-size: 0.85rem; line-height: 1.65;
+    color: rgba(245,240,232,0.5);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6rem; align-items: start;
+  }
+
+  .contact-info { padding-top: 0.5rem; }
+
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+
+  .contact-item-label {
+    font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem;
+  }
+
+  .contact-item-value {
+    font-size: 0.95rem; color: rgba(245,240,232,0.8); line-height: 1.5;
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .form-group label {
+    font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: rgba(245,240,232,0.5);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.18);
+    color: var(--cream); padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.05);
+  }
+
+  .form-group select option { background: var(--navy); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    background: var(--gold); color: var(--navy);
+    border: none; padding: 1rem 2rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem; font-weight: 700;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer; border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  /* ── START TODAY ── */
+  #start {
+    background: linear-gradient(135deg, #0B1C2E 0%, #0f2438 40%, #122540 100%);
+    text-align: center;
+    padding: 8rem 6%;
+    position: relative; overflow: hidden;
+  }
+
+  #start::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(201,168,76,0.07) 0%, transparent 70%);
+  }
+
+  .start-content { position: relative; z-index: 2; max-width: 680px; margin: 0 auto; }
+
+  .start-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-weight: 900; color: var(--white);
+    margin-bottom: 1.2rem; line-height: 1.1;
+  }
+
+  .start-title span { color: var(--gold); }
+
+  .start-sub {
+    font-size: 1rem; line-height: 1.75;
+    color: rgba(245,240,232,0.6);
+    margin-bottom: 2.5rem;
+  }
+
+  .start-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+  .start-trust {
+    margin-top: 3rem;
+    display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  .trust-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; color: rgba(245,240,232,0.4);
+    letter-spacing: 0.06em;
+  }
+
+  .trust-item::before {
+    content: '✓'; color: var(--gold); font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #07131f;
+    padding: 2rem 6%;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  footer .logo { font-size: 1.1rem; }
+
+  .footer-copy {
+    font-size: 0.78rem; color: rgba(245,240,232,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── DIVIDER ── */
+  .gold-divider {
+    width: 48px; height: 2px;
+    background: var(--gold); margin: 1.5rem 0;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #about, #contact { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { display: none; }
+    nav ul { display: none; }
+    .steps::before { display: none; }
+  }
+
+  @media (max-width: 580px) {
+    .form-row { grid-template-columns: 1fr; }
+    section { padding: 4rem 5%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Debt<span>Clear</span> Solutions</div>
+  <ul>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#how">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#start" class="nav-cta">Start Today</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Professional Debt Collection</div>
+    <h1>Recover What's <em>Rightfully</em> Yours</h1>
+    <p class="hero-sub">We combine legal expertise, ethical practices, and proven systems to help businesses recover outstanding debts — swiftly, professionally, and with full compliance.</p>
+    <div class="hero-btns">
+      <a href="#start" class="btn-primary">Get Started Today</a>
+      <a href="#services" class="btn-outline">View Our Services</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">94%</div>
+      <div class="stat-label">Recovery Rate</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">12K+</div>
+      <div class="stat-label">Cases Resolved</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">18yr</div>
+      <div class="stat-label">In Business</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">Services & Steps</h2>
+    <div class="gold-divider"></div>
+    <p class="section-sub">A structured, compliant approach to recovering your outstanding receivables at every stage of the debt lifecycle.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <div class="service-step">Step 01</div>
+      <div class="service-name">Debt Assessment</div>
+      <p class="service-desc">We analyze your outstanding accounts, validate documentation, and determine the most effective recovery strategy tailored to your portfolio.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📞</div>
+      <div class="service-step">Step 02</div>
+      <div class="service-name">Direct Outreach</div>
+      <p class="service-desc">Professional, compliant communication with debtors via phone, letter, and digital channels. We represent your brand with integrity at every touchpoint.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚖️</div>
+      <div class="service-step">Step 03</div>
+      <div class="service-name">Legal Escalation</div>
+      <p class="service-desc">When necessary, our legal partners pursue formal proceedings, judgments, and enforcement actions to maximize your recovery outcome.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💰</div>
+      <div class="service-step">Step 04</div>
+      <div class="service-name">Settlement & Recovery</div>
+      <p class="service-desc">We negotiate structured settlements and payment plans, ensuring you receive funds quickly while maintaining debtor relationships where possible.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-box">
+      <p class="about-quote">"We don't just chase debts — we recover them with the professionalism your business deserves."</p>
+      <div class="about-quote-attr">— Our founding principle</div>
+      <div class="about-features">
+        <div class="about-feature">
+          <div class="feature-dot"></div>
+          <div class="feature-text"><strong>FDCPA & GDPR Compliant</strong> — Every action we take adheres strictly to applicable debt collection laws and regulations.</div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-dot"></div>
+          <div class="feature-text"><strong>No Recovery, No Fee</strong> — Our contingency model means you only pay when we successfully recover funds on your behalf.</div>
+        </div>
+        <div class="about-feature">
+          <div class="feature-dot"></div>
+          <div class="feature-text"><strong>Real-Time Reporting</strong> — Stay informed with a dedicated client portal giving you live visibility into every account's status.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="about-content">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">About Us</h2>
+    <div class="gold-divider"></div>
+    <p class="section-sub" style="margin-bottom:1.5rem;">DebtClear Solutions is a nationally licensed debt recovery agency with over 18 years of experience serving businesses across multiple industries — from healthcare and finance to retail and commercial real estate.</p>
+    <p class="section-sub">Our team of certified collectors, legal specialists, and data analysts work in concert to deliver industry-leading recovery rates while preserving your brand reputation. We are not a call center — we are a strategic recovery partner.</p>
+    <div style="margin-top: 2.5rem;">
+      <a href="#contact" class="btn-primary">Talk to Our Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section id="how">
+  <div class="how-header">
+    <div class="section-label">Our Process</div>
+    <h2 class="section-title">How We Work</h2>
+    <div class="gold-divider"></div>
+    <p class="section-sub">A transparent, four-phase process engineered for maximum recovery and minimum friction for your team.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-title">Onboarding</div>
+      <p class="step-desc">Submit your accounts securely via our encrypted portal. We assign a dedicated account manager within 24 hours.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-title">Strategy</div>
+      <p class="step-desc">We profile each debt, prioritize by recovery probability, and build a custom communication sequence.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-title">Execution</div>
+      <p class="step-desc">Our specialists engage debtors through compliant multi-channel outreach. You track everything in real time.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-title">Resolution</div>
+      <p class="step-desc">Funds are recovered and remitted to you within agreed timelines. Full documentation provided for your records.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-info">
+    <div class="section-label">Reach Us</div>
+    <h2 class="section-title">Contact Us</h2>
+    <div class="gold-divider"></div>
+    <p class="section-sub" style="margin-bottom: 2.5rem;">Ready to recover your outstanding receivables? Speak with a specialist today — no obligation, no pressure.</p>
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-item-label">Phone</div>
+        <div class="contact-item-value">+1 (800) 555-0192</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-item-label">Email</div>
+        <div class="contact-item-value">contact@debtclearsolutions.com</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🏛️</div>
+      <div>
+        <div class="contact-item-label">Office Hours</div>
+        <div class="contact-item-value">Mon – Fri: 8:00 AM – 6:00 PM EST<br>Sat: 9:00 AM – 1:00 PM EST</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="John">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Business Email</label>
+        <input type="email" placeholder="john@yourcompany.com">
+      </div>
+      <div class="form-group">
+        <label>Company Name</label>
+        <input type="text" placeholder="Your Company LLC">
+      </div>
+      <div class="form-group">
+        <label>Total Debt Amount</label>
+        <select>
+          <option value="">Select range...</option>
+          <option>Under $10,000</option>
+          <option>$10,000 – $50,000</option>
+          <option>$50,000 – $200,000</option>
+          <option>$200,000+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us briefly about your situation..."></textarea>
+      </div>
+      <button class="form-submit">Send Message →</button>
+    </div>
+  </div>
+</section>
+
+<!-- START TODAY -->
+<section id="start">
+  <div class="start-content">
+    <div class="section-label" style="justify-content:center;">Take Action</div>
+    <h2 class="start-title">Start <span>Recovering</span> Today</h2>
+    <p class="start-sub">Every day a debt goes unpursued is money left on the table. Submit your accounts now and let our specialists build your recovery strategy — free of charge.</p>
+    <div class="start-btns">
+      <a href="#contact" class="btn-primary">Submit Your Accounts</a>
+      <a href="tel:+18005550192" class="btn-outline">Call Us Now</a>
+    </div>
+    <div class="start-trust">
+      <div class="trust-item">No Upfront Fees</div>
+      <div class="trust-item">Licensed & Bonded</div>
+      <div class="trust-item">FDCPA Compliant</div>
+      <div class="trust-item">Free Consultation</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="logo">Debt<span>Clear</span> Solutions</div>
+  <div class="footer-copy">© 2025 DebtClear Solutions. All rights reserved. Licensed Debt Collection Agency.</div>
+</footer>
+
+</body>
+</html>
